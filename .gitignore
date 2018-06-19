@@ -1,3 +1,4 @@
 *.ipynb*
 .idea/
 notebooks
+__pycache__
