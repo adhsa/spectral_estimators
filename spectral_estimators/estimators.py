@@ -37,13 +37,13 @@ def q_spice(y, B, M, q):
 if __name__ == '__main__':
     import matplotlib.pyplot as plt
 
-    q = 1.5
-    M, N = 1000, 64
+    q = 1
+    M, N = 200, 64
 
     ff = np.arange(M) / M - 0.5
     ff = ff.reshape(-1, 1)
     B = se.get_fourier_matrix(N, ff)
-    y = se.get_some_data(0.3, N)
+    y = se.complex_sinusoid(0.3, N) + se.complex_sinusoid(0.2, N)
 
     p = q_spice(y, B, M, q)
     plt.stem(ff, np.abs(p))

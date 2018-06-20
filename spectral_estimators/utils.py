@@ -11,15 +11,17 @@ def get_fourier_matrix(N, ff):
     return np.exp(1j * 2 * np.pi * np.outer(np.arange(1, N + 1).reshape(-1, 1), ff))
 
 
-def get_some_data(f, N):
-    """
+def complex_sinusoid(f, N, amp=1, sigma=1):
+    """ Generate a complex sinusoid
 
     :param f: Signal frequency
+    :param amp: Signal amplitude
+    :param sigma: Noise variance
     :param N: Number of samples
     :return: Complex sinusoid
     """
-    y = np.exp(1j * f * 2 * np.pi * np.arange(1, N + 1).reshape(-1, 1) + 1j + 1j * np.pi * np.random.rand())
-    w = (np.random.randn(N).reshape(-1, 1) + 1j * np.random.randn(N).reshape(-1, 1)) / np.sqrt(2)
+    y = amp * np.exp(1j * f * 2 * np.pi * np.arange(1, N + 1).reshape(-1, 1) + 1j * np.pi * np.random.rand())
+    w = sigma * (np.random.randn(N).reshape(-1, 1) + 1j * np.random.randn(N).reshape(-1, 1)) / np.sqrt(2)
     return y + w
 
 
