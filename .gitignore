@@ -117,4 +117,5 @@ dmypy.json
 .idea
 
 # Miscellaneous
-spectral_estimators/tests
+spectral_estimators/scripts
+
