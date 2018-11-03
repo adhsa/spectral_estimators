@@ -1,6 +1,7 @@
 TODO
 ----
 
-- [ ] update documentation
+- [ ] Implement wideband steering vector
+- [ ] Implement covariance matrix estimator
 
  
