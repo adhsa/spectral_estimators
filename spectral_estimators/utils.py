@@ -77,7 +77,7 @@ def steering_matrix(thetas: Union[np.ndarray, List], n_sensors: int, d: float = 
 
     """
 
-    return np.array([steering_vector(theta, n_sensors, d) for theta in thetas])
+    return np.array([steering_vector(theta, n_sensors, d) for theta in thetas]).T
 
 
 def single_radar_target(theta: float, n_sensors: int, s: np.ndarray = None, d: float=0.5, rnd_phase: bool=True) -> np.ndarray:
@@ -108,7 +108,7 @@ def single_radar_target(theta: float, n_sensors: int, s: np.ndarray = None, d: f
     """
 
     if s is None:
-        s = np.random.randn(32)
+        s = np.random.randn(32).astype(np.complex128)
 
     if rnd_phase:
         s *= np.exp(1j * 2 * np.pi * np.random.rand(1))
