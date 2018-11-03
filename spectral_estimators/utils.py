@@ -1,6 +1,6 @@
 import numpy as np
 
-from typing import Union
+from typing import Union, List
 
 
 def complex_sinusoid(w: float, t: Union[np.ndarray, float]) -> np.ndarray:
@@ -56,6 +56,30 @@ def steering_vector(theta: float, n_sensors: int, d: float = 0.5) -> np.ndarray:
     return a
 
 
+def steering_matrix(thetas: Union[np.ndarray, List], n_sensors: int, d: float = 0.5) -> np.ndarray:
+    """ This function returns the steering matrix of an array.
+
+    Parameters
+    ----------
+    thetas : Union[np.ndarray, List]
+        A list with the direction of arrivals.
+
+    n_sensors : int
+        Then number of sensors
+
+    d : float
+        The array spacing in wavelengths.
+
+    Returns
+    -------
+    np.ndarray
+        The steering matrix of shape (n_sensors, n_doas).
+
+    """
+
+    return np.array([steering_vector(theta, n_sensors, d) for theta in thetas])
+
+
 def single_radar_target(theta: float, n_sensors: int, s: np.ndarray = None, d: float=0.5, rnd_phase: bool=True) -> np.ndarray:
     """ This function measures a single incoming radar target
 
@@ -101,3 +125,4 @@ def wideband_steering_vector(theta1, theta2, n_sensors, d=0.5):
 
     a = (np.exp(1j * wb * s) - np.exp(-1j * wa * s)) / (1j * 2 * np.pi * s)
     return a
+
