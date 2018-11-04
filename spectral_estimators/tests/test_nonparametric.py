@@ -9,10 +9,10 @@ from spectral_estimators.utils import steering_matrix, single_radar_target
 class TestBeamformer(unittest.TestCase):
 
     def test_single_peak(self):
-        """
-        This method sweeps through several peaks and tests if the beamformer gives a correct estimate.
+        """ This method sweeps through several peaks and tests if the beamformer gives a correct estimate.
 
         TODO: Make this into a decorator
+
         """
 
         n_sensors = 12
@@ -25,9 +25,9 @@ class TestBeamformer(unittest.TestCase):
             data += 0.1 * (np.random.randn(*data.shape) + 1j * np.random.randn(*data.shape)) / np.sqrt(2)
 
             R = covariance_matrix(data)
-            phi = beamformer(R, A)
+            spectrum = beamformer(R, A)
 
-            ind = np.argmax(phi)
+            ind = np.argmax(spectrum)
             estimated = theta_grid[ind]
             error = np.linalg.norm(theta - estimated)
             self.assertGreater(0.5, error)
